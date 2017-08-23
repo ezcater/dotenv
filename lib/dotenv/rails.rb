@@ -51,6 +51,22 @@ module Dotenv
       instance.load
     end
 
+    def overload
+      # Because we're using the Dotenv Overload API, process ENV files in reverse order -
+      # from least specific to most specific, such that more specific environment configuration
+      # overload less specific configuration and all of these overload the loaded environment.
+      reversed_dotenv_files = dotenv_files.reverse
+      Dotenv.overload(*reversed_dotenv_files)
+    end
+
+    # Provides a Hook for Rails Overload API
+    # This loads values OVER any existing definition, which is essential for reloading processes
+    # like you find in Unicorn with hot restart capability.  Otherwise, values will never be
+    # updated successfully without a full restart.
+    def self.overload
+      instance.overload
+    end
+
     config.before_configuration { load }
 
     private
