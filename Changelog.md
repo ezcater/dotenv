@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.0 - October 24, 2018
+
+* Support for Docker environments and EC2 environments in single file to include (`lib/dotenv/rails-docker`)
+
 [Unreleased changes](https://github.com/bkeepers/dotenv/compare/v2.2.1...master)
 
 ## 2.2.1 - Apr 28, 2017
